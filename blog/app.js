@@ -2,11 +2,13 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const sequelize = require("./config/database");
 const postRoutes = require("./routes/postRoutes");
+const errorHandler = require("./middleware/errorHandler");
 
 const app = express();
 
 app.use(bodyParser.json());
 app.use(postRoutes);
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 3000;
 

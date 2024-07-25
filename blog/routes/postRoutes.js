@@ -1,46 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const Post = require("../models/dbModels");
+const postController = require("../controllers/postController");
 
-router.get("/api/posts/", async (_, res) => {
-  try {
-    const posts = await Post.findAll();
-    if (posts) {
-      res.status(200).json(posts);
-    } else {
-      res.status(404).json({ error: "No se encontró ningún post" });
-    }
-  } catch (error) {
-    res.status(500).json({ error: "Error al recibir los posts" });
-  }
-});
-
-router.post("/api/posts/", async (req, res) => {
-  try {
-    const { title, content, author } = req.body;
-    if (!title || !content || !author) {
-      res.status(404).json({ error: "No se creó el post" });
-    } else {
-      const newPost = await Post.create({ title, content, author });
-      res.status(200).json(newPost);
-    }
-  } catch (error) {
-    res.status(500).json({ error: "Error al crear el post" });
-  }
-});
-
-router.get("/api/posts/:id", async (req, res) => {
-  try {
-    const post = await Post.findByPk(req.params.id);
-    if (post) {
-      res.status(200).json(post);
-    } else {
-      res.status(404).json({ error: "Post no encontrado" });
-    }
-  } catch (error) {
-    console.error("Error al encontrar el post:", error);
-    res.status(500).json({ error: "Error al encontrar el post" });
-  }
-});
+router.get("/api/posts/", postController.getAllPosts);
+router.post("/api/posts/", postController.createPost);
+router.get("/api/posts/:id", postController.getPostById);
 
 module.exports = router;
