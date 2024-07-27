@@ -6,11 +6,8 @@ const LoadMorePostsButton = ({ onClick, visibleCount, totalPosts }) =>
     <Button
       variant="outlined"
       color="inherit"
-      size="large"
       onClick={onClick}
       sx={{
-        marginTop: 10,
-        fontWeight: "bold",
         fontSize: 16,
         fontFamily: "fantasy",
       }}

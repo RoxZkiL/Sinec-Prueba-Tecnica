@@ -1,12 +1,13 @@
 import axios from "axios";
-import { Box, Container, Grid, Typography } from "@mui/material";
+import { Box, Container, Grid, Typography, Button } from "@mui/material";
 import PostCard from "./PostCard";
 import LoadMorePostsButton from "./LoadMorePostsButton";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const PostsGrid = () => {
   const [data, setData] = useState([]);
-  const [visibleCount, setVisibleCount] = useState(6);
+  const [visibleCount, setVisibleCount] = useState(8);
 
   useEffect(() => {
     const getDataFromApi = async () => {
@@ -51,11 +52,33 @@ const PostsGrid = () => {
             </Grid>
           ))}
         </Grid>
-        <LoadMorePostsButton
-          onClick={loadMorePosts}
-          visibleCount={visibleCount}
-          totalPosts={data.length}
-        />
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: 2,
+            marginTop: 8,
+          }}
+        >
+          <LoadMorePostsButton
+            onClick={loadMorePosts}
+            visibleCount={visibleCount}
+            totalPosts={data.length}
+          />
+          <Link
+            to={"/posts/create"}
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            <Button
+              variant="outlined"
+              color="inherit"
+              sx={{ fontFamily: "fantasy", fontSize: 16 }}
+            >
+              Crear Nuevo Post
+            </Button>
+          </Link>
+        </Box>
       </Box>
     </Container>
   );
