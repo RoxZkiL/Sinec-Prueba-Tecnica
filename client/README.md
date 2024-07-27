@@ -10,7 +10,7 @@ Este proyecto consta de dos partes: una API REST desarrollada con Node.js y Expr
 
 ### Configuración y Ejecución
 
-1. **Iniciar el servidor:**
+**Iniciar el servidor:**
 
 npm install
 
@@ -18,7 +18,7 @@ npm start
 
 Esto iniciará la API en http://localhost:3000.
 
-2. **Endpoints Disponibles:**
+**Endpoints Disponibles:**
 
 Listar todas las publicaciones o crear una nueva publicación:
 
@@ -27,7 +27,7 @@ POST /api/posts/
 Obtener detalles de una publicación específica:
 GET /api/posts/:id/
 
-3. **Iniciar el cliente (frontend)**
+## Parte 2: Iniciar el cliente en React**
 
 npm install
 
@@ -35,10 +35,11 @@ npm run dev
 
 Esto iniciará la aplicación en http://localhost:8000.
 
-4. **Rutas Disponibles**
+**Rutas Disponibles**
    Página de inicio:
-
+   
 Redirecciona a /posts.
+
 Listar publicaciones:
 
 /posts: Muestra los títulos de los posts. Cada título es un enlace a la vista de detalles.
@@ -48,9 +49,11 @@ Detalles de una publicación:
 Crear una nueva publicación:
 
 /posts/create Muestra un formulario para crear un nuevo post. Los campos del formulario incluyen:
+
 Título (title)
 Contenido (content)
 Autor (author)
+
 Una vez creado el post, redirige a la vista de detalles del nuevo post. El formulario incluye validación básica para asegurarse de que todos los campos están completos.
 
 ### Notas
