@@ -38,9 +38,6 @@ npm run dev
 Esto iniciará la aplicación en http://localhost:8000.
 
 **Rutas Disponibles**
-   Página de inicio:
-   
-Redirecciona a /posts.
 
 Listar publicaciones:
 
