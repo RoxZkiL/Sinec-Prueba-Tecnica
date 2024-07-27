@@ -1,6 +1,6 @@
 # Proyecto de Blog API y Cliente
 
-Este proyecto consta de dos partes: una API REST desarrollada con Node.js y Express, y una aplicación frontend en React para interactuar con la API.
+Este proyecto consta de dos partes: una API REST desarrollada con Node.js y Express, y una aplicación frontend en React para interactuar con la API y estilos de Material-UI.
 
 ## Parte 1: API REST en Node.js con Express
 
