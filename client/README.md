@@ -37,9 +37,7 @@ npm run dev
 
 Esto iniciará la aplicación en http://localhost:8000.
 
-**Rutas Disponibles**
-
-Listar publicaciones:
+**Rutas Disponibles:**
 
 /posts: Muestra los títulos de los posts. Cada título es un enlace a la vista de detalles.
 Detalles de una publicación:
