@@ -9,9 +9,9 @@ const app = express();
 
 app.use(
   cors({
-    origin: "http://localhost:5173", // Permitir solicitudes desde este origen
+    origin: "http://localhost:8000",
     methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"], // Permitir estas cabeceras
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 

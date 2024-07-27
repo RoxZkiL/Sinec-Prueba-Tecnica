@@ -1,17 +1,27 @@
-import { Box, Container, Typography, Button } from "@mui/material";
+import { Box, Container, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
-import StyledTextField from "./StyledTextField";
+import MainTypography from "../Typography/MainTypography";
+import CustomTextField from "../Textfield/CustomTextFields";
+import usePostFormValidation from "./usePostFormValidation"; // Asegúrate de ajustar la ruta
 
 const CreatePost = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [author, setAuthor] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { errors, validateForm } = usePostFormValidation();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!validateForm(title, content, author)) {
+      return;
+    }
+
+    setIsSubmitting(true);
     try {
       const response = await axios.post("http://localhost:3000/api/posts/", {
         title,
@@ -21,33 +31,40 @@ const CreatePost = () => {
       navigate(`/posts/${response.data.id}`);
     } catch (error) {
       console.error("Error al crear el post", error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
   return (
-    <Container maxWidth="lg" sx={{ mt: 4 }}>
+    <Container maxWidth="lg">
       <Box
         component="form"
         onSubmit={handleSubmit}
         sx={{
+          flexGrow: 1,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          minHeight: "100vh",
+          padding: 8,
           gap: 2,
         }}
       >
-        <Typography variant="h4" component="h2" gutterBottom>
-          Crear Post
-        </Typography>
-        <StyledTextField
+        <MainTypography>Crear Post</MainTypography>
+
+        <CustomTextField
           label="Título"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder="Ingresa el título del post..."
           variant="outlined"
           fullWidth
+          error={!!errors.title}
+          helperText={errors.title}
         />
-        <StyledTextField
+
+        <CustomTextField
           label="Mensaje"
           value={content}
           onChange={(e) => setContent(e.target.value)}
@@ -56,22 +73,29 @@ const CreatePost = () => {
           fullWidth
           multiline
           rows={10}
+          error={!!errors.content}
+          helperText={errors.content}
         />
-        <StyledTextField
+
+        <CustomTextField
           label="Autor"
           value={author}
           onChange={(e) => setAuthor(e.target.value)}
           placeholder="Ingresa el autor del post..."
           variant="outlined"
           fullWidth
+          error={!!errors.author}
+          helperText={errors.author}
         />
+
         <Button
           type="submit"
           variant="outlined"
           color="inherit"
           sx={{ fontFamily: "fantasy", fontSize: 16 }}
+          disabled={isSubmitting}
         >
-          Crear Nuevo Post
+          {isSubmitting ? "Creando..." : "Crear Nuevo Post"}
         </Button>
       </Box>
     </Container>

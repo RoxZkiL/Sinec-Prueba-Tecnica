@@ -1,9 +1,10 @@
 import axios from "axios";
-import { Box, Container, Grid, Typography, Button } from "@mui/material";
+import { Box, Container, Grid } from "@mui/material";
 import PostCard from "./PostCard";
-import LoadMorePostsButton from "./LoadMorePostsButton";
+import LoadMorePostsButton from "../Button/LoadMorePostsButton";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import LinkButton from "../Button/LinkButton";
+import MainTypography from "../Typography/MainTypography";
 
 const PostsGrid = () => {
   const [data, setData] = useState([]);
@@ -34,17 +35,10 @@ const PostsGrid = () => {
           flexDirection: "column",
           alignItems: "center",
           minHeight: "100vh",
-          paddingBottom: 8,
+          padding: 8,
         }}
       >
-        <Typography
-          variant="h2"
-          component="h1"
-          fontFamily="fantasy"
-          gutterBottom
-        >
-          Blog
-        </Typography>
+        <MainTypography>Blog</MainTypography>
         <Grid container spacing={8} justifyContent="center">
           {data.slice(0, visibleCount).map((post) => (
             <Grid item xs={14} sm={12} md={6} key={post.id}>
@@ -66,18 +60,7 @@ const PostsGrid = () => {
             visibleCount={visibleCount}
             totalPosts={data.length}
           />
-          <Link
-            to={"/posts/create"}
-            style={{ textDecoration: "none", color: "black" }}
-          >
-            <Button
-              variant="outlined"
-              color="inherit"
-              sx={{ fontFamily: "fantasy", fontSize: 16 }}
-            >
-              Crear Nuevo Post
-            </Button>
-          </Link>
+          <LinkButton to={"/posts/create"}>Crear nuevo post</LinkButton>
         </Box>
       </Box>
     </Container>

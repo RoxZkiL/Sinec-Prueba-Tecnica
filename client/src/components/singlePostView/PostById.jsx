@@ -1,18 +1,14 @@
 import { useEffect, useState } from "react";
+import { Box, Typography, Container, Paper, Divider } from "@mui/material";
+import CircularProgress from "@mui/material/CircularProgress";
+import LinkButton from "../Button/LinkButton";
+import { useParams } from "react-router-dom";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
-import {
-  Box,
-  Typography,
-  Container,
-  Paper,
-  Divider,
-  Button,
-} from "@mui/material";
 
 const PostById = () => {
   const { id } = useParams();
-  const [data, setData] = useState({});
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const getSinglePost = async () => {
@@ -22,11 +18,58 @@ const PostById = () => {
         );
         setData(postById.data);
       } catch (error) {
-        console.log({ error: "Error al obtener el post" });
+        if (error.response && error.response.status === 404) {
+          setError("Post no encontrado");
+        } else {
+          setError("Error al obtener el post");
+        }
       }
     };
     getSinglePost();
   }, [id]);
+
+  if (error) {
+    return (
+      <Container
+        maxWidth="md"
+        sx={{
+          mt: 4,
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <Paper elevation={3} sx={{ p: 4, width: "100%", maxWidth: "800px" }}>
+          <Box textAlign="center">
+            <Typography
+              variant="h4"
+              component="h1"
+              gutterBottom
+              fontFamily="fantasy"
+            >
+              {error}
+            </Typography>
+            <Divider sx={{ my: 3 }} />
+            <LinkButton to={"/posts"}>Volver a todos los posts</LinkButton>
+          </Box>
+        </Paper>
+      </Container>
+    );
+  }
+
+  if (!data) {
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          minHeight: "100vh",
+        }}
+      >
+        <CircularProgress />
+      </Box>
+    );
+  }
 
   return (
     <Container
@@ -68,18 +111,7 @@ const PostById = () => {
             Autor: {data.author}
           </Typography>
           <Divider sx={{ my: 3 }} />
-          <Link
-            to={"/posts"}
-            style={{ textDecoration: "none", color: "black" }}
-          >
-            <Button
-              variant="outlined"
-              color="inherit"
-              sx={{ fontFamily: "fantasy", fontSize: 16 }}
-            >
-              Volver a todos los Posts
-            </Button>
-          </Link>
+          <LinkButton to={"/posts"}>Volver a todos los posts</LinkButton>
         </Box>
       </Paper>
     </Container>

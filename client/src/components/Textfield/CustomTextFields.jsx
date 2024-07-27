@@ -1,7 +1,7 @@
 import { TextField } from "@mui/material";
 import { styled } from "@mui/system";
 
-const StyledTextField = styled(TextField)({
+const StyledTextField = styled(TextField)(() => ({
   "& .MuiOutlinedInput-root": {
     "& fieldset": {
       borderColor: "black",
@@ -19,6 +19,10 @@ const StyledTextField = styled(TextField)({
   "& .MuiInputLabel-root.Mui-focused": {
     color: "black",
   },
-});
+}));
 
-export default StyledTextField;
+const CustomTextField = (props) => {
+  return <StyledTextField {...props} />;
+};
+
+export default CustomTextField;
