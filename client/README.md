@@ -56,5 +56,3 @@ Una vez creado el post, redirige a la vista de detalles del nuevo post. El formu
 ### Notas
 
 -Asegúrate de que la API esté en funcionamiento antes de iniciar el cliente frontend.
-
--La API se supone que está disponible en http://localhost:8000.
