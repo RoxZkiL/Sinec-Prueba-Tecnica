@@ -27,7 +27,9 @@ POST /api/posts/
 Obtener detalles de una publicación específica:
 GET /api/posts/:id/
 
-## Parte 2: Iniciar el cliente en React**
+## Parte 2: Iniciar el cliente en React
+
+### Configuración y Ejecución
 
 npm install
 
