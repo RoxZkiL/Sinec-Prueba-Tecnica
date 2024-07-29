@@ -57,7 +57,7 @@ const CreatePost = () => {
           label="Título"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          placeholder="Ingresa el título del post..."
+          placeholder="Ingresa el título del post ..."
           variant="outlined"
           fullWidth
           error={!!errors.title}
