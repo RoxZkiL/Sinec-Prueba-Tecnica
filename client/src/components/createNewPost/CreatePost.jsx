@@ -4,7 +4,7 @@ import { useState } from "react";
 import axios from "axios";
 import MainTypography from "../Typography/MainTypography";
 import CustomTextField from "../Textfield/CustomTextFields";
-import usePostFormValidation from "./usePostFormValidation"; // Asegúrate de ajustar la ruta
+import usePostFormValidation from "./usePostFormValidation";
 
 const CreatePost = () => {
   const [title, setTitle] = useState("");
