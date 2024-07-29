@@ -26,17 +26,5 @@ Implementando los siguientes endpoints
 /api/posts/ [GET, POST]: Listar todas las publicaciones o crear una nueva publicación.
 /api/posts/<id>/ [GET]: Obtener una publicación específica.
 
-Para correr el proyecto final se van a ejecutar los siguientes comandos dentro del directorio del proyecto
-
-Se va a crear y activar un ambiente virtual (virtualenv) vacío
-Se van a instalar las dependencias del proyecto ejecutando “pip install -r requirements.txt” (El archivo requirements.txt debe estar incluido en el proyecto)
-Se van a correr las migraciones del proyecto (“JavaScript manage.js migrate”)
-Se va a crear un superusuario (“JavaScript manage.js createsuperuser”)
-Se va a correr la aplicación (“JavaScript manage.js runserver”)
-
-Notas
-La base de datos a ocupar es SQLite3
-El archivo de settings.js se puede enviar tal cual, incluyendo el campo SECRET_KEY
-
 Puntos extra
 Implementar la API utilizando NodeJs y express
